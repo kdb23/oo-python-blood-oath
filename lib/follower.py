@@ -21,3 +21,10 @@ class Follower:
     @property
     def cults(self):
         return [ o for o in self.oaths]
+    
+    def join_cult(self, cult_instance):
+        return BloodOath("2023-04-01", cult_instance, self)
+
+    @classmethod
+    def of_a_certain_age(cls, fol_age):
+        return [f.name for f in cls.all if f.age >= fol_age]
