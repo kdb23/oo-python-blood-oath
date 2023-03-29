@@ -17,7 +17,7 @@ class Cult:
     
     @property
     def followers(self):
-        return[o for o in self.oaths]
+        return[o.follower for o in self.oaths]
 
     def recruit_follower(self, follower):
         return BloodOath("2012-12-12", self, follower )
@@ -30,5 +30,12 @@ class Cult:
         for c in cls.all:
             if c.name == name_string:
                 return c
-            else:
-                return 'Cult Not Found'
+        return 'Cult Not Found'
+    
+    @classmethod
+    def find_by_location(cls, loc):
+        return [l.name for l in cls.all if l.city == loc]
+    
+    @classmethod
+    def find_by_founding_year(cls,found_year):
+        return [ c.name for c in cls.all if c.year == found_year]
